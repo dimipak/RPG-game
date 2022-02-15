@@ -1,0 +1,7 @@
+.vscode
+lib
+SFML
+include
+*.out
+*.dSYM
+.DS_Store
