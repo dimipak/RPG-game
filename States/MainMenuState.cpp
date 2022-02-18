@@ -28,7 +28,7 @@ void MainMenuState::initBackground()
 {
     this->background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 
-    if (!this->backgroundTexture.loadFromFile("Resources/bg1.png"))
+    if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg1.png"))
     {
         throw "ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
     }
