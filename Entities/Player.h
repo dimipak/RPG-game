@@ -16,4 +16,6 @@ public:
     ~Player();
 
     //Functions
+
+    void update(const float& dt);
 };

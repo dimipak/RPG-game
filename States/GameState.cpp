@@ -38,31 +38,31 @@ void GameState::initKeybinds()
 
 void GameState::initTextures()
 {
-    if (!this->textures["PLAYER_IDLE"].loadFromFile("Resources/Images/Sprites/Player/test.png"))
+    if (!this->textures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/Player/woodcutter.png"))
     {
-        throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_IDLE_TEXTURE";
+        throw "ERROR::GAME_STATE::COULD_NOT_LOAD_IDLE_PLAYER_SHEET";
     }
 }
 
 void GameState::initPlayers()
 {
-    this->player = new Player(0, 0, this->textures["PLAYER_IDLE"]);
+    this->player = new Player(0, 0, this->textures["PLAYER_SHEET"]);
 }
 
 void GameState::updateInput(const float& dt)
 {
     // Update player input
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
-        this->player->move(dt, -1.f, 0.f);
+        this->player->move(-1.f, 0.f, dt);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
-        this->player->move(dt, 1.f, 0.f);
+        this->player->move(1.f, 0.f, dt);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
-        this->player->move(dt, 0.f, -1.f);
+        this->player->move(0.f, -1.f, dt);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
-        this->player->move(dt, 0.f, 1.f);
+        this->player->move(0.f, 1.f, dt);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
         this->endState();
@@ -74,16 +74,9 @@ void GameState::update(const float& dt)
     this->updateInput(dt);
     
     this->player->update(dt);
-
-    // std::cout << "Hello from GameState!" << std::endl;
-
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    // {        
-    //     std::cout << "A" << std::endl;
-    // }
 }
 
 void GameState::render(sf::RenderTarget* target)
 {
-    this->player->render(target);
+    this->player->render(*target);
 }
